@@ -238,7 +238,7 @@ def health():
     return {"status": "ok", "service": "ledger-agent", "endpoint": "POST /"}
 
 
-@app.post("/")
+@app.post("/answer")
 def ask(request: QuestionRequest):
     try:
         payloads = _fetch_payloads()
