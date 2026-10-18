@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: ledger-agent
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /
+    envVars:
+      - key: LEDGER_ROOT_URL
+        sync: false
+      - key: CACHE_TTL_SECONDS
+        value: "300"
+      - key: LEDGER_TIMEOUT_SECONDS
+        value: "8"
